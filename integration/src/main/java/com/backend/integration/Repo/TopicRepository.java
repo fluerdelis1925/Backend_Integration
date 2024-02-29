@@ -19,10 +19,11 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
     Optional<Topic> findById(Long topic_id); // Method to find a topic by its ID
 
-    // Custom query to find topics by chapter ID using named parameter ":chapter_id"
-    @Query("SELECT t FROM Topic t WHERE t.chapter.chapter_id = :chapter_id")
-    List<Topic> findByChapter_id(@Param("chapter_id") Long chapter_id);
+    // // Custom query to find topics by chapter ID using named parameter ":chapter_id"
+    // @Query("SELECT t FROM Topic t WHERE t.chapter.chapter_id = :chapter_id")
+    // List<Topic> findByChapter_id(@Param("chapter_id") Long chapter_id);
     
+    //query for deleting topic inside course
     @Transactional
     @Modifying
     @Query("DELETE FROM Topic t WHERE t.topic_id = :topic_id")

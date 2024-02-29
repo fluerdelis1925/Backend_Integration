@@ -15,7 +15,6 @@ import com.backend.integration.Entity.Topic;
 import com.backend.integration.Exceptions.TopicNotFoundException;
 import com.backend.integration.Repo.TopicRepository;
 
-import jakarta.transaction.Transactional;
 
 @Service // Annotation to indicate this class as a service
 public class TopicService {
@@ -31,16 +30,6 @@ public class TopicService {
     public Topic getTopicById(Long topic_id) { // Method signature to retrieve a topic by its ID
         return topicRepository.findById(topic_id) // referring to findById() method of TopicRepository interface
                 .orElseThrow(() -> new TopicNotFoundException(topic_id)); // Handling TopicNotFoundException
-    }
-
-    // Function to save a new topic
-    public Topic saveTopic(Topic newTopic) {
-        System.out.println(newTopic.getTopic_id());
-        System.out.println(newTopic.getTopic_title());
-        System.out.println(newTopic.getTopic_description());
-        System.out.println(newTopic.getTopic_file());
-        System.out.println(newTopic.getTopic_link());
-        return topicRepository.save(newTopic);
     }
 
     // Function to update a topic
@@ -69,17 +58,19 @@ public class TopicService {
   //  Returning success message
     }
 
-    // Function to retrieve topics by chapter ID
-    public List<Topic> getTopicByChapterId(Long chapter_id) { // Method signature to retrieve topics by chapter ID
-        return topicRepository.findByChapter_id(chapter_id); // referring to findByChapter_id() method of
-                                                             // TopicRepository interface
-    }
-
-    // @Transactional
-
-    // public String deleteTopic(Long topic_id) {
-    // topicRepository.deleteById(topic_id);
-    // return "Topic with id " + topicId + " has been successfully deleted";
+    // // Function to retrieve topics by chapter ID
+    // public List<Topic> getTopicByChapterId(Long chapter_id) { // Method signature to retrieve topics by chapter ID
+    //     return topicRepository.findByChapter_id(chapter_id); // referring to findByChapter_id() method of
+    //                                                          // TopicRepository interface
+    // }
+// Function to save a new topic
+    // public Topic saveTopic(Topic newTopic) {
+    //     System.out.println(newTopic.getTopic_id());
+    //     System.out.println(newTopic.getTopic_title());
+    //     System.out.println(newTopic.getTopic_description());
+    //     System.out.println(newTopic.getTopic_file());
+    //     System.out.println(newTopic.getTopic_link());
+    //     return topicRepository.save(newTopic);
     // }
 
 }

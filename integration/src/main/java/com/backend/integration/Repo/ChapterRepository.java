@@ -27,7 +27,8 @@ public interface ChapterRepository extends JpaRepository<Chapter, Long> {
     // Custom query to find chapters by topic ID using named parameter ":topic_id"
     @Query("SELECT DISTINCT ch FROM Chapter ch JOIN ch.topic t WHERE t.topic_id = :topic_id")
     List<Chapter> findByTopicId(@Param("topic_id") Long topic_id);
-
+    
+//query for deleting chapter and its array of topics inside
     @Transactional
     @Modifying
     @Query("DELETE FROM Chapter ch WHERE ch.chapter_id = :chapter_id")

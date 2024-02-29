@@ -1,11 +1,9 @@
 package com.backend.integration.Controller; 
 
-import java.io.IOException; 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired; 
-import org.springframework.http.HttpStatus; 
-import org.springframework.http.ResponseEntity; 
+
 import org.springframework.web.bind.annotation.CrossOrigin; 
 import org.springframework.web.bind.annotation.DeleteMapping; 
 import org.springframework.web.bind.annotation.GetMapping; 
@@ -31,10 +29,10 @@ public class TopicController {
     private TopicService topicService;
 
     // Method for handling file upload and topic creation
-    @PostMapping("/createTopic") //orginal user
-        Topic newTopic (@RequestBody Topic newTopic){
-       return topicService.saveTopic(newTopic);
-    }
+    // @PostMapping("/createTopic") //orginal user
+    //     Topic newTopic (@RequestBody Topic newTopic){
+    //    return topicService.saveTopic(newTopic);
+    // }
 
     // Method for retrieving all topics
     @GetMapping("/getTopic")

@@ -48,12 +48,6 @@ public class CourseController {
         return courseService.getCourseById(course_id);
     }
 
-    // API FOR GETTING COURSES BY CHAPTER ID
-    @GetMapping("/byChapter/{chapter_id}") // Endpoint for getting courses by chapter ID
-    public List<Course> getCourseByChapterId(@PathVariable Long chapter_id) { // Retrieves courses by chapter ID
-        return courseService.getCourseByChapterId(chapter_id);
-    }
-
     // API FOR UPDATING COURSE BY ID
     @PutMapping("/course/{course_id}") // Endpoint for updating a course by its ID
     Course updateCourse(@RequestBody Course newCourse, @PathVariable Long course_id) { // Updates course by its ID
@@ -76,4 +70,11 @@ public class CourseController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Handle course not found scenario
     }
+    
+    //pwede na idelete same function lang pala with (/course/{course_id})
+     // // API FOR GETTING COURSES BY CHAPTER ID (shows course object and its array of chapters inside)
+    // @GetMapping("/byChapter/{chapter_id}") // Endpoint for getting courses by chapter ID 
+    // public List<Course> getCourseByChapterId(@PathVariable Long chapter_id) { // Retrieves courses by chapter ID
+    //     return courseService.getCourseByChapterId(chapter_id);
+    // }
 }

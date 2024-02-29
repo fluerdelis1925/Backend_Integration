@@ -33,7 +33,6 @@ public class CourseService {
     }
 
     // Function to create a new course with an array of chapters
-
     public Course saveCourse(@RequestBody Course newCourse) { // Method signature to create a new course
         // Printing course details (except ID)
         System.out.println("Course Title: " + newCourse.getCourse_title());
@@ -42,7 +41,7 @@ public class CourseService {
         return courseRepository.save(newCourse); // referring to save() method of CourseRepository interface
     }
 
-    // Function to add a chapter inside the course
+    // Function to add a chapter inside the course (connected sa addchapter inside course entity))
     public Course addChapterToCourse(Long course_id, Chapter chapter) {
         Course course = courseRepository.findById(course_id)
                 .orElseThrow(() -> new CourseNotFoundException(course_id));
@@ -50,7 +49,6 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
-    // try
     // delete
     public String deleteCourse(@PathVariable Long course_id) { // Method signature to delete a chapter by its ID
         if (!chapterRepository.existsById(course_id)) { // Checking if chapter exists
@@ -59,7 +57,7 @@ public class CourseService {
         chapterRepository.deleteById(course_id); // Deleting chapter
         return "Course with id " + course_id + " has been successfully deleted"; // Returning success message
     }
-    // try
+
 
     // Function to update a course
     // Method to update a course
@@ -73,9 +71,10 @@ public class CourseService {
                 }).orElseThrow(() -> new CourseNotFoundException(course_id)); // Handling CourseNotFoundException
     }
 
-    // Function to retrieve courses by chapter ID
-    public List<Course> getCourseByChapterId(Long chapter_id) { // Method signature to retrieve courses by chapter ID
-        return courseRepository.findByChapterId(chapter_id); // referring to findByChapterId() method of
-                                                             // CourseRepository interface
-    }
+    //pwede na idelete just go to the chapter service para sa reason @GetMapping("/byChapter/{chapter_id}")
+    // // Function to retrieve courses by chapter ID
+    // public List<Course> getCourseByChapterId(Long chapter_id) { // Method signature to retrieve courses by chapter ID
+    //     return courseRepository.findByChapterId(chapter_id); // referring to findByChapterId() method of
+    //                                                          // CourseRepository interface
+    // }
 }

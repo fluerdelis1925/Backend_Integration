@@ -1,20 +1,20 @@
-package com.backend.integration.Controller; 
+package com.backend.integration.Controller;
 
-import java.util.List; 
-import org.springframework.beans.factory.annotation.Autowired; 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping; 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping; 
-import org.springframework.web.bind.annotation.PutMapping; 
-import org.springframework.web.bind.annotation.RequestBody; 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController; 
+import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.integration.Entity.Chapter; 
+import com.backend.integration.Entity.Chapter;
 import com.backend.integration.Entity.Topic;
 import com.backend.integration.Service.ChapterService;
 
@@ -26,11 +26,12 @@ public class ChapterController {
     @Autowired // Injection of ChapterService dependency
     private ChapterService chapterService;
 
-    // POST MAPPING FOR CREATING NEW CHAPTER
-    @PostMapping("/postChapter")
-    public Chapter saveChapter(@RequestBody Chapter newChapter) { // Saves a new chapter
-        return chapterService.saveChapter(newChapter);
-    }
+    // // POST MAPPING FOR CREATING NEW CHAPTER pwede na idelete kasi mag aadd na ng chapter sa loob ng course through this api (http://localhost:8080/api/v1/auth/course/{course_id}/chapter)
+    // @PostMapping("/postChapter")
+    // public Chapter saveChapter(@RequestBody Chapter newChapter) { // Saves a new
+    // chapter
+    // return chapterService.saveChapter(newChapter);
+    // }
 
     // GET MAPPING FOR GETTING ALL CHAPTERS
     @GetMapping("/getChapter")
@@ -56,13 +57,7 @@ public class ChapterController {
         return chapterService.deleteChapter(chapter_id);
     }
 
-    // GET MAPPING TO GETTING CHAPTERS BY COURSE ID
-    @GetMapping("/byCourse/{course_id}")
-    public List<Chapter> getChapterByCourseId(@PathVariable Long course_id) { // Retrieves chapters by course ID
-        return chapterService.getChapterByCourseId(course_id);
-    }
-
-    //  POST MAPPING TO ADD TOPIC TO CHAPTER
+    // POST MAPPING TO ADD TOPIC TO CHAPTER
     @PostMapping("/chapter/{chapter_id}/topics")
     // adds topic to chapter collection
     public ResponseEntity<Chapter> addTopicToChapter(@PathVariable Long chapter_id, @RequestBody Topic topic) {
@@ -72,4 +67,11 @@ public class ChapterController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Handles course not found scenario
     }
+
+    
+    // // GET MAPPING TO GETTING CHAPTERS BY COURSE ID (getting chapters only that are stored inside the course)
+    // @GetMapping("/byCourse/{course_id}")
+    // public List<Chapter> getChapterByCourseId(@PathVariable Long course_id) { // Retrieves chapters by course ID
+    //     return chapterService.getChapterByCourseId(course_id);
+    // }
 }
